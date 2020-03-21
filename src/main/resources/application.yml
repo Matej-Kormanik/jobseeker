@@ -1,0 +1,11 @@
+spring.jpa:
+  database: POSTGRESQL
+  hibernate.ddl-auto: update
+  show-sql: true
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/jobseeker
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
