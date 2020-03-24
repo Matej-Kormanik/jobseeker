@@ -1,9 +1,6 @@
 package com.jobseeker.persistence.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 
 @Entity
@@ -31,7 +28,5 @@ public class UserEntity {
 
     @Column(name = "LAST_NAME")
     private String lastName;
-
-
 
 }
