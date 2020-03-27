@@ -1,15 +1,12 @@
 package com.jobseeker.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
+
+import java.io.Serializable;
 import java.util.Objects;
 
-@Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class User {
+@Data
+public class User implements Serializable {
 
     private Long id;
 
@@ -24,6 +21,16 @@ public class User {
     private String lastName;
 
 
+    public User(String username, String password, String email, String firstName, String lastName) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    public User() {
+    }
 
     @Override
     public boolean equals(Object o) {
