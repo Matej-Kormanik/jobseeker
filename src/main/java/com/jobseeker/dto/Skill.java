@@ -19,7 +19,7 @@ public class Skill {
 
     private String description;
 
-    private int seniority;
+    private SkillSeniority seniority;
 
     private User user;
 

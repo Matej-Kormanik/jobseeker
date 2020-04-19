@@ -14,7 +14,7 @@ public class JobPost {
 
     private LocalDate createdDate;
 
-    private String type;
+    private JobType type;
 
     private Employer employer;
 

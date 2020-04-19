@@ -34,5 +34,4 @@ public class ExperienceEntity {
     @JoinColumn(name = "USER_ID")
     private UserEntity userEntity;
 
-
 }

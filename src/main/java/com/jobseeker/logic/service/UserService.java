@@ -23,21 +23,24 @@ public class UserService {
 
     @Transactional
     public User createNewUser(User user) {
-        UserEntity savedUser = userRepository.save(userMapper.toEntity(user));
+        return saveUserToDb(userMapper.toEntity(user));
+    }
+
+    private User saveUserToDb(UserEntity userEntity) {
+        UserEntity savedUser = userRepository.save(userEntity);
         return userMapper.toUser(savedUser);
     }
 
     @Transactional
-    public User updateExistingUser(User user, long id) {
+    public User updateExistingUser(User updatedUser, long id) {
         Optional<UserEntity> foundOptUser = userRepository.findById(id);
-        return foundOptUser.map(existingUser -> {
-            existingUser.setEmail(user.getEmail());
-            existingUser.setFirstName(user.getFirstName());
-            existingUser.setLastName(user.getLastName());
-            existingUser.setPassword(user.getPassword());
-            existingUser.setUsername(user.getUsername());
-            userRepository.save(existingUser);
-            return userMapper.toUser(existingUser);
+        return foundOptUser.map(existingUserEntity -> {
+            existingUserEntity.setEmail(updatedUser.getEmail());
+            existingUserEntity.setFirstName(updatedUser.getFirstName());
+            existingUserEntity.setLastName(updatedUser.getLastName());
+            existingUserEntity.setPassword(updatedUser.getPassword());
+            existingUserEntity.setUsername(updatedUser.getUsername());
+            return saveUserToDb(existingUserEntity);
         }).orElseGet(null);
     }
 

@@ -1,5 +1,6 @@
 package com.jobseeker.persistence.entity;
 
+import com.jobseeker.dto.SkillSeniority;
 import lombok.*;
 import javax.persistence.*;
 
@@ -20,8 +21,9 @@ public class SkillEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "SKILL_SENIORITY")
-    private int seniority;
+    private SkillSeniority seniority;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

@@ -1,5 +1,6 @@
 package com.jobseeker.persistence.entity;
 
+import com.jobseeker.dto.JobType;
 import lombok.*;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,8 +25,9 @@ public class JobPostEntity {
     @Column(name = "CREATED_DATE")
     private LocalDate createdDate;
 
-    @Column(name = "YPE")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "TYPE")
+    private JobType type;
 
     @ManyToOne
     @JoinColumn(name = "EMPLOYER_ID")
