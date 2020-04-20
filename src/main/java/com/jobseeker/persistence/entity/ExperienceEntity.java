@@ -30,7 +30,9 @@ public class ExperienceEntity {
     @Column(name = "TO_DATE", columnDefinition = "DATE")
     private LocalDate toDate;
 
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY,
+            cascade = {CascadeType.PERSIST, CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
     @JoinColumn(name = "USER_ID")
     private UserEntity userEntity;
 

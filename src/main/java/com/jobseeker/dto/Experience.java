@@ -20,4 +20,38 @@ public class Experience {
     private LocalDate toDate;
 
     private User user;
+
+
+    public Experience() {
+    }
+
+    public Experience(String company, String title, String description, LocalDate fromDate, LocalDate toDate) {
+        this.company = company;
+        this.title = title;
+        this.description = description;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+    }
+
+    public Experience(Long id, String company, String title, String description, LocalDate fromDate, LocalDate toDate, User user) {
+        this.id = id;
+        this.company = company;
+        this.title = title;
+        this.description = description;
+        this.fromDate = fromDate;
+        this.toDate = toDate;
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "Experience{" +
+                "id=" + id +
+                ", company='" + company + '\'' +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", fromDate=" + fromDate +
+                ", toDate=" + toDate +
+                '}';
+    }
 }
