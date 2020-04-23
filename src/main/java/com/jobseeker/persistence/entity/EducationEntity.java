@@ -31,7 +31,9 @@ public class EducationEntity {
     @Column(name = "TO_DATE", columnDefinition = "DATE")
     private LocalDate toDate;
 
-    @ManyToOne
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "USER_ID")
     private UserEntity userEntity;
 
