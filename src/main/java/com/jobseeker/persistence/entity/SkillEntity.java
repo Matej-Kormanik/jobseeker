@@ -3,6 +3,8 @@ package com.jobseeker.persistence.entity;
 import com.jobseeker.dto.SkillSeniority;
 import lombok.*;
 import javax.persistence.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @Entity
 @Table(name = "SKILL")
@@ -18,16 +20,30 @@ public class SkillEntity {
     @Column(name = "SKILL_NAME", nullable = false)
     private String skill;
 
-    @Column(name = "DESCRIPTION")
-    private String description;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "SKILL_SENIORITY")
     private SkillSeniority seniority;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private UserEntity userEntity;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(
+            name = "SKILL_USER_JOIN",
+            joinColumns = @JoinColumn(name = "SKILL_ID"),
+            inverseJoinColumns = @JoinColumn(name = "USER_ID")
+    )
+    private List<UserEntity> usersHavingASkill;
+
+
+    public void addUserHavingSkill(UserEntity user) {
+        if (usersHavingASkill == null) {
+            usersHavingASkill = new LinkedList<>();
+        }
+        usersHavingASkill.add(user);
+    }
+
+
+    public void removeUserHavingASkill(UserEntity userEntity) {
+        usersHavingASkill.remove(userEntity);
+    }
 
 
 }

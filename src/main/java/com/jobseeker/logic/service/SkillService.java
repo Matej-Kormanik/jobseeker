@@ -13,6 +13,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@Transactional
 public class SkillService {
 
     @Autowired
@@ -22,22 +23,18 @@ public class SkillService {
     private SkillRepository skillRepository;
 
 
-    @Transactional
     public Skill createNewSkill(Skill skill) {
         return saveSkillToDb(skillMapper.toEntity(skill));
     }
 
-    @Transactional
     public Skill updateSkill(Skill updatedSkill, long id) {
         Skill skillById = findSkillById(id);
         if (skillById == null) return null;
         skillById.setSkill(updatedSkill.getSkill());
-        skillById.setDescription(updatedSkill.getDescription());
         skillById.setSeniority(updatedSkill.getSeniority());
         return saveSkillToDb(skillMapper.toEntity(skillById));
     }
 
-    @Transactional(readOnly = true)
     public Skill findSkillById(long skillId) {
         Optional<SkillEntity> optSkillEntity = skillRepository.findById(skillId);
         return optSkillEntity
@@ -45,12 +42,11 @@ public class SkillService {
                 .orElse(null);
     }
 
-    @Transactional(readOnly = true)
     public List<Skill> findAllSkills() {
         return skillMapper.toSkill(skillRepository.findAll());
     }
 
-    @Transactional
+
     public boolean deleteSkill(long skillId) {
         Skill skillById = findSkillById(skillId);
         if (skillById == null) {
@@ -64,7 +60,7 @@ public class SkillService {
 
     private Skill saveSkillToDb(SkillEntity skillEntity) {
         SkillEntity savedSkill = skillRepository.save(skillEntity);
-        return skillMapper.toSkill(skillEntity);
+        return skillMapper.toSkill(savedSkill);
     }
 
 }

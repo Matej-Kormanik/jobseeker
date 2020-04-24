@@ -1,10 +1,12 @@
 package com.jobseeker.dto;
 
+import com.jobseeker.persistence.entity.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -17,12 +19,13 @@ public class Skill {
 
     private String skill;
 
-    private String description;
-
     private SkillSeniority seniority;
 
-    private User user;
 
+    public Skill(String skill, SkillSeniority seniority) {
+        this.skill = skill;
+        this.seniority = seniority;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -31,13 +34,12 @@ public class Skill {
         Skill skill1 = (Skill) o;
         return seniority == skill1.seniority &&
                 Objects.equals(id, skill1.id) &&
-                Objects.equals(skill, skill1.skill) &&
-                Objects.equals(description, skill1.description);
+                Objects.equals(skill, skill1.skill);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, skill, description, seniority);
+        return Objects.hash(id, skill, seniority);
     }
 
 }
