@@ -20,11 +20,11 @@ public class ReviewEntity {
     @Column(name = "FEEDBACK")
     private String feedback;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
     private UserEntity userEntity;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "EMPLOYER_ID")
     private EmployerEntity employerEntity;
 

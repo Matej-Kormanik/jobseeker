@@ -24,13 +24,15 @@ public class SkillEntity {
     @Column(name = "SKILL_SENIORITY")
     private SkillSeniority seniority;
 
+
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(
-            name = "SKILL_USER_JOIN",
+    @JoinTable(name = "SKILL_USER_JOIN",
             joinColumns = @JoinColumn(name = "SKILL_ID"),
             inverseJoinColumns = @JoinColumn(name = "USER_ID")
     )
     private List<UserEntity> usersHavingASkill;
+
+
 
 
     public void addUserHavingSkill(UserEntity user) {
@@ -40,10 +42,8 @@ public class SkillEntity {
         usersHavingASkill.add(user);
     }
 
-
     public void removeUserHavingASkill(UserEntity userEntity) {
         usersHavingASkill.remove(userEntity);
     }
-
 
 }
