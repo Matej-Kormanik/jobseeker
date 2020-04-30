@@ -1,8 +1,5 @@
 package com.jobseeker.dto;
 
-import com.jobseeker.dto.User;
-import com.jobseeker.persistence.entity.EmployerEntity;
-import com.jobseeker.persistence.entity.UserEntity;
 import lombok.Data;
 
 @Data

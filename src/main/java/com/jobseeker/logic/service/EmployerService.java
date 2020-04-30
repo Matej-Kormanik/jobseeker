@@ -1,6 +1,7 @@
 package com.jobseeker.logic.service;
 
 import com.jobseeker.dto.Employer;
+import com.jobseeker.dto.exception.ResourceNotUpdatedException;
 import com.jobseeker.dto.mapper.EmployerMapper;
 import com.jobseeker.persistence.EmployerRepository;
 import com.jobseeker.persistence.entity.EmployerEntity;
@@ -23,6 +24,7 @@ public class EmployerService {
     @Autowired
     private EmployerMapper employerMapper;
 
+
     public List<Employer> getAllEmployers() {
         List<EmployerEntity> allEmployers = employerRepository.findAll();
         return employerMapper.toEmployer(allEmployers);
@@ -36,6 +38,14 @@ public class EmployerService {
     }
 
     public Employer createNewEmployer(final Employer employer) {
+        return saveToDB(employerMapper.toEntity(employer));
+    }
+
+    public Employer updateEmployer(final Employer employer) {
+        if (employer.getId() == null) {
+            log.error("Entity '{}' for update must have ID", employer);
+            throw new ResourceNotUpdatedException("Entity for update must have ID");
+        }
         return saveToDB(employerMapper.toEntity(employer));
     }
 

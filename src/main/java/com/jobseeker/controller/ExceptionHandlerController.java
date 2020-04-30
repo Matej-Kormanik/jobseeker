@@ -3,6 +3,7 @@ package com.jobseeker.controller;
 import com.jobseeker.dto.exception.ExceptionalResponse;
 import com.jobseeker.dto.exception.ResourceNotCreatedException;
 import com.jobseeker.dto.exception.ResourceNotFoundException;
+import com.jobseeker.dto.exception.ResourceNotUpdatedException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -25,6 +26,16 @@ public class ExceptionHandlerController {
 
     @ExceptionHandler
     public ResponseEntity<ExceptionalResponse> notCreatedHandler(ResourceNotCreatedException exception) {
+        ExceptionalResponse response = new ExceptionalResponse(
+                NOT_ACCEPTABLE.value(),
+                NOT_ACCEPTABLE.getReasonPhrase(),
+                exception.getMessage(),
+                LocalDateTime.now());
+        return new ResponseEntity<>(response, NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<ExceptionalResponse> notUpdatedHandler(ResourceNotUpdatedException exception) {
         ExceptionalResponse response = new ExceptionalResponse(
                 NOT_ACCEPTABLE.value(),
                 NOT_ACCEPTABLE.getReasonPhrase(),
