@@ -9,11 +9,12 @@ import java.util.List;
 @Table(name = "APP_USER")
 @Getter @Setter
 @NoArgsConstructor
+@SequenceGenerator(name = "ID_GENERATOR", sequenceName = "SEQ_USER_ID", allocationSize = 1)
 public class UserEntity {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
     private Long id;
 
     @Column(name = "USERNAME")
