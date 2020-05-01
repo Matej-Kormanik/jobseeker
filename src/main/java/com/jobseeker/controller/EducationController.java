@@ -63,6 +63,7 @@ public class EducationController {
     }
 
     @DeleteMapping(path = "/users/{userId}/educations/{eduId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteUsersEducationById(@PathVariable long userId, @PathVariable long eduId) {
         educationService.removeUsersEducationById(userId, eduId);
     }

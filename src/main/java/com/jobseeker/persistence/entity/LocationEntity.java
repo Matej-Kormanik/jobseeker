@@ -36,7 +36,7 @@ public class LocationEntity {
     @Column(name = "LONGITUDE")
     private double longitude;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "EMPLOYER_ID")
     private EmployerEntity employerEntity;
 
