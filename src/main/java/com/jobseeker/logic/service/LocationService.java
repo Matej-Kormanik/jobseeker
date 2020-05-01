@@ -5,7 +5,9 @@ import com.jobseeker.dto.Location;
 import com.jobseeker.dto.exception.ResourceNotFoundException;
 import com.jobseeker.dto.mapper.EmployerMapper;
 import com.jobseeker.dto.mapper.LocationMapper;
+import com.jobseeker.persistence.EmployerRepository;
 import com.jobseeker.persistence.LocationRepository;
+import com.jobseeker.persistence.entity.EmployerEntity;
 import com.jobseeker.persistence.entity.LocationEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class LocationService {
 
     @Autowired
     private EmployerMapper employerMapper;
+
+    @Autowired
+    private EmployerRepository employerRepository;
 
 
     public List<Location> getAllLocations() {
@@ -71,13 +76,14 @@ public class LocationService {
 
     public Location createEmployerLocation(final long empId, final Location location) {
         assert location.getId() == null;
-        Employer employerById = employerService.getEmployerById(empId);
-        if (employerById == null) {
+        Optional<EmployerEntity> employerById = employerRepository.findById(empId);
+        if (!employerById.isPresent()) {
             throw new ResourceNotFoundException("Employer with id " + empId + " not found");
         }
         LocationEntity locationEntity = locationMapper.toEntity(location);
-        locationEntity.setEmployerEntity(employerMapper.toEntity(employerById));
-        return locationMapper.toLocation(locationRepository.save(locationEntity));
+        locationEntity.setEmployerEntity(employerById.get());
+        LocationEntity savedLocation = locationRepository.save(locationEntity);
+        return locationMapper.toLocation(savedLocation);
     }
 
 }

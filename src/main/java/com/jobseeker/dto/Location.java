@@ -1,6 +1,5 @@
 package com.jobseeker.dto;
 
-import com.jobseeker.persistence.entity.EmployerEntity;
 import lombok.Data;
 
 @Data
@@ -14,7 +13,7 @@ public class Location {
 
     private String zipCode;
 
-    private String City;
+    private String city;
 
     private String country;
 
