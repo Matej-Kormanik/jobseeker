@@ -9,12 +9,12 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-@SequenceGenerator(name = "ID_GENERATOR", sequenceName = "SEQ_EDUCATION_ID", allocationSize = 1)
+@SequenceGenerator(name = "EDU_ID_GENERATOR", sequenceName = "SEQ_EDUCATION_ID", allocationSize = 1)
 public class EducationEntity {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EDU_ID_GENERATOR")
     private Long id;
 
     @Column(name = "SCHOOL")

@@ -8,12 +8,12 @@ import java.time.LocalDate;
 @Table(name = "EXPERIENCE")
 @Getter @Setter
 @NoArgsConstructor
-@SequenceGenerator(name = "ID_GENERATOR", sequenceName = "SEQ_EXPERIENCE_ID", allocationSize = 1)
+@SequenceGenerator(name = "EXPERIENCE_ID_GENERATOR", sequenceName = "SEQ_EXPERIENCE_ID", allocationSize = 1)
 public class ExperienceEntity {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EXPERIENCE_ID_GENERATOR")
     private Long id;
 
     @Column(name = "COMPANY")

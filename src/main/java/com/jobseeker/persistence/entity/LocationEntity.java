@@ -7,12 +7,12 @@ import javax.persistence.*;
 @Table(name = "LOCATION")
 @Getter @Setter
 @NoArgsConstructor
-@SequenceGenerator(name = "ID_GENERATOR", sequenceName = "SEQ_LOCATION_ID", allocationSize = 1)
+@SequenceGenerator(name = "LOCATION_ID_GENERATOR", sequenceName = "SEQ_LOCATION_ID", allocationSize = 1)
 public class LocationEntity {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LOCATION_ID_GENERATOR")
     private Long id;
 
     @Column(name = "STREET")

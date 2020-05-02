@@ -9,12 +9,12 @@ import java.time.LocalDate;
 @Table(name = "JOB_POST")
 @Getter @Setter
 @NoArgsConstructor
-@SequenceGenerator(name = "ID_GENERATOR", sequenceName = "SEQ_JOBPOST_ID", allocationSize = 1)
+@SequenceGenerator(name = "JOB_ID_GENERATOR", sequenceName = "SEQ_JOBPOST_ID", allocationSize = 1)
 public class JobPostEntity {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_GENERATOR")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "JOB_ID_GENERATOR")
     private Long id;
 
     @Column(name = "TITLE")
