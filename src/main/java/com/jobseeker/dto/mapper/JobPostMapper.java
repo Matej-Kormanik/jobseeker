@@ -10,8 +10,8 @@ import java.util.List;
 public interface JobPostMapper {
 
     JobPost toJobPost(JobPostEntity jobPostEntity);
-    List<JobPost> toUser(List<JobPostEntity> jobPostEntities);
+    List<JobPost> toJobPosts(List<JobPostEntity> jobPostEntities);
 
     JobPostEntity toEntity(JobPost jobPost);
-    List<JobPostEntity> toEntity(List<JobPost> jobPosts);
+    List<JobPostEntity> toEntities(List<JobPost> jobPosts);
 }
