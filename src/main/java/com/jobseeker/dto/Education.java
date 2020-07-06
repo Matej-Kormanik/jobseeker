@@ -18,6 +18,6 @@ public class Education {
 
     private LocalDate toDate;
 
-    private User user;
+    private UserParent user;
 
 }

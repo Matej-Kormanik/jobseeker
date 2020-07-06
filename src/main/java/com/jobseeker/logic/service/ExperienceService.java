@@ -2,6 +2,7 @@ package com.jobseeker.logic.service;
 
 import com.jobseeker.dto.Experience;
 import com.jobseeker.dto.User;
+import com.jobseeker.dto.UserParent;
 import com.jobseeker.dto.mapper.ExperienceMapper;
 import com.jobseeker.dto.mapper.UserMapper;
 import com.jobseeker.persistence.ExperienceRepository;
@@ -29,7 +30,7 @@ public class ExperienceService {
     private ExperienceMapper experienceMapper;
 
     @Autowired
-    private UserService userService;
+    private AppUserService appUserService;
 
     @Autowired
     private UserRepository userRepository;
@@ -65,7 +66,7 @@ public class ExperienceService {
     // =========================  user's experience ================================
 
     public List<Experience> getAllUsersExperiences(final long userId) {
-        User user = userService.findUserById(userId);
+        User user = appUserService.findUserById(userId);
         List<ExperienceEntity> usersExperiences = experienceRepository.findAllByUserEntity(userMapper.toEntity(user));
         return experienceMapper.toExperience(usersExperiences);
     }

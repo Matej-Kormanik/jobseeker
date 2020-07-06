@@ -7,22 +7,12 @@ import javax.persistence.*;
 @Table(name = "EMPLOYER")
 @Getter @Setter
 @NoArgsConstructor
+@DiscriminatorValue(value = UserParentEntity.EMPLOYER)
 @SequenceGenerator(name = "EMPLOYER_ID_GENERATOR", sequenceName = "SEQ_EMPLOYER_ID", allocationSize = 1)
-public class EmployerEntity {
+public class EmployerEntity extends UserParentEntity{
 
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMPLOYER_ID_GENERATOR")
-    private Long id;
-
-    @Column(name = "name")
+    @Column(name = "NAME")
     private String name;
-
-    @Column(name = "PASSWORD")
-    private String password;
-
-    @Column(name = "EMAIL")
-    private String email;
 
     @Column(name = "ABOUT")
     private String about;

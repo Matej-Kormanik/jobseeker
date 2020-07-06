@@ -2,6 +2,7 @@ package com.jobseeker.logic.service;
 
 import com.jobseeker.dto.Skill;
 import com.jobseeker.dto.User;
+import com.jobseeker.dto.UserParent;
 import com.jobseeker.dto.mapper.SkillMapper;
 import com.jobseeker.dto.mapper.UserMapper;
 import com.jobseeker.persistence.SkillRepository;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @Transactional
-public class UserService {
+public class AppUserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -44,12 +45,10 @@ public class UserService {
         return userMapper.toUser(savedUser);
     }
 
-    public User updateExistingUser(User updatedUser, long id) {
+    public User updateExistingUser(UserParent updatedUser, long id) {
         Optional<UserEntity> foundOptUser = userRepository.findById(id);
         return foundOptUser.map(existingUserEntity -> {
             existingUserEntity.setEmail(updatedUser.getEmail());
-            existingUserEntity.setFirstName(updatedUser.getFirstName());
-            existingUserEntity.setLastName(updatedUser.getLastName());
             existingUserEntity.setPassword(updatedUser.getPassword());
             existingUserEntity.setUsername(updatedUser.getUsername());
             return saveUserToDb(existingUserEntity);

@@ -3,12 +3,12 @@ package com.jobseeker.dto;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Data
 @EqualsAndHashCode(callSuper = true)
-public class Employer extends UserParent {
+@Data
+public class AppUser extends UserParent {
 
-    private String name;
+    private String firstName;
 
-    private String about;
+    private String lastName;
 
 }

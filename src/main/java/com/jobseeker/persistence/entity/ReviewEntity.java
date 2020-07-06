@@ -23,10 +23,6 @@ public class ReviewEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "USER_ID")
-    private UserEntity userEntity;
-
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "EMPLOYER_ID")
-    private EmployerEntity employerEntity;
+    private UserParentEntity userParentEntity;
 
 }

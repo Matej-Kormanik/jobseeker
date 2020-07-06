@@ -11,8 +11,6 @@ public class Review {
 
     private String feedback;
 
-    private User user;
-
-    private Employer employer;
+    private UserParent user;
 
 }

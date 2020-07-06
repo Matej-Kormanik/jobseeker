@@ -4,10 +4,12 @@ import com.jobseeker.dto.Review;
 import com.jobseeker.dto.mapper.ReviewMapper;
 import com.jobseeker.persistence.EmployerRepository;
 import com.jobseeker.persistence.ReviewRepository;
+import com.jobseeker.persistence.UserParentRepository;
 import com.jobseeker.persistence.UserRepository;
 import com.jobseeker.persistence.entity.EmployerEntity;
 import com.jobseeker.persistence.entity.ReviewEntity;
 import com.jobseeker.persistence.entity.UserEntity;
+import com.jobseeker.persistence.entity.UserParentEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +31,7 @@ public class ReviewService {
     private ReviewMapper reviewMapper;
 
     @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private EmployerRepository employerRepository;
+    private UserParentRepository userParentRepository;
 
 
     public List<Review> getAllReviews() {
@@ -41,49 +40,30 @@ public class ReviewService {
     }
 
     public List<Review> getAllUsersReviews(final long userId) {
-        Optional<UserEntity> userById = userRepository.findById(userId);
+        Optional<UserParentEntity> userById = userParentRepository.findById(userId);
         if (userById.isPresent()) {
-            List<ReviewEntity> usersReviews = reviewRepository.findAllByUserEntity(userById.get());
+            List<ReviewEntity> usersReviews = reviewRepository.findAllByUserParentEntity(userById.get());
             return reviewMapper.toReview(usersReviews);
         }
         log.info("User with id {} not found in database", userById);
         return Collections.emptyList();
     }
 
-    public List<Review> getAllEmployersReviews(final long empId) {
-        Optional<EmployerEntity> empById = employerRepository.findById(empId);
-        if (empById.isPresent()) {
-            List<ReviewEntity> employerReviews = reviewRepository.findAllByEmployerEntity(empById.get());
-            return reviewMapper.toReview(employerReviews);
-        }
-        log.warn("Employer with id {} not found in database", empById);
-        return Collections.emptyList();
-    }
 
     // ===================================   POST   =====================================================
 
 
     public Review addReviewToUser(final long userId, final Review review) {
-        Optional<UserEntity> userById = userRepository.findById(userId);
+        Optional<UserParentEntity> userById = userParentRepository.findById(userId);
         if (userById.isPresent()) {
             ReviewEntity reviewEntity = reviewMapper.toEntity(review);
-            reviewEntity.setUserEntity(userById.get());
+            reviewEntity.setUserParentEntity(userById.get());
             return saveReviewToDB(reviewEntity);
         }
         log.warn("User with id {} not found in database", userById);
         return null;
     }
 
-    public Review addReviewToEmployer(final long empId, final Review review) {
-        Optional<EmployerEntity> employerById = employerRepository.findById(empId);
-        if (employerById.isPresent()) {
-            ReviewEntity reviewEntity = reviewMapper.toEntity(review);
-            reviewEntity.setEmployerEntity(employerById.get());
-            return saveReviewToDB(reviewEntity);
-        }
-        log.warn("Employer with id {} not found in database", employerById);
-        return null;
-    }
 
 
     private Review saveReviewToDB(ReviewEntity reviewEntity) {

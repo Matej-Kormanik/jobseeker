@@ -9,22 +9,8 @@ import java.util.List;
 @Table(name = "APP_USER")
 @Getter @Setter
 @NoArgsConstructor
-@SequenceGenerator(name = "USER_ID_GENERATOR", sequenceName = "SEQ_USER_ID", allocationSize = 1)
-public class UserEntity {
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_GENERATOR")
-    private Long id;
-
-    @Column(name = "USERNAME")
-    private String username;
-
-    @Column(name = "PASSWORD")
-    private String password;
-
-    @Column(name = "EMAIL")
-    private String email;
+@DiscriminatorValue(value = UserParentEntity.APP_USER)
+public class UserEntity extends UserParentEntity {
 
     @Column(name = "FIRST_NAME")
     private String firstName;

@@ -10,7 +10,7 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
 
-  security:
-    user:
-      name: user
-      password: user
+#  security:
+#    user:
+#      name: user
+#      password: user

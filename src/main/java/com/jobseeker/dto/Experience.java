@@ -19,7 +19,7 @@ public class Experience {
 
     private LocalDate toDate;
 
-    private User user;
+    private UserParent user;
 
 
     public Experience() {
@@ -33,7 +33,7 @@ public class Experience {
         this.toDate = toDate;
     }
 
-    public Experience(Long id, String company, String title, String description, LocalDate fromDate, LocalDate toDate, User user) {
+    public Experience(Long id, String company, String title, String description, LocalDate fromDate, LocalDate toDate, UserParent user) {
         this.id = id;
         this.company = company;
         this.title = title;

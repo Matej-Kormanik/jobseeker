@@ -10,7 +10,7 @@ public class Contract {
 
     private LocalDate createdDate;
 
-    private User user;
+    private UserParent user;
 
     private JobPost jobPost;
 
