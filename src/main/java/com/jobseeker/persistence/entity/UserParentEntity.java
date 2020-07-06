@@ -8,8 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "USERS")
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
 @SequenceGenerator(name = "USER_PARENT_ID_GENERATOR", sequenceName = "SEQ_USER_ID", allocationSize = 1)
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -24,7 +23,7 @@ public class UserParentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_PARENT_ID_GENERATOR")
     private long id;
 
-    @Column(name = "USERNAME", nullable = false)
+    @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
 
     @Column(name = "PASSWORD", nullable = false)
@@ -33,7 +32,7 @@ public class UserParentEntity {
     @Column(name = "ENABLED", nullable = false)
     private boolean enabled;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", nullable = false)
     private String email;
 
 }
