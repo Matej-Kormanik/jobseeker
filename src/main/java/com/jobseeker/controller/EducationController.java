@@ -18,7 +18,7 @@ public class EducationController {
     private EducationService educationService;
 
 
-    @GetMapping(path = "/edducations", produces = "application/json")
+    @GetMapping(path = "/educations", produces = "application/json")
     public ResponseEntity<List<Education>> getAllEducations() {
         List<Education> allEducations = educationService.getAllEducations();
         return new ResponseEntity<>(allEducations, HttpStatus.OK);
