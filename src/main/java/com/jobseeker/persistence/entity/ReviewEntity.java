@@ -15,7 +15,7 @@ public class ReviewEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REVIEW_ID_GENERATOR")
     private Long id;
 
-    @Column(name = "stars")
+    @Column(name = "STARS")
     private int stars;
 
     @Column(name = "FEEDBACK")
