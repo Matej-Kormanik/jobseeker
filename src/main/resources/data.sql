@@ -48,7 +48,7 @@ VALUES (5002, 'Prague', 'CZ', '20', 50.126516, 14.423495, 'Hnezdenska', '18100',
 -- ==============================================================================================================================================
 
 insert into review (id, feedback, stars, user_id) VALUES (6001, 'dobry kokot ten chlapec', 1, 1001);
-insert into review (id, feedback, stars, user_id) VALUES (6002, 'dobry pracant', 2, 1002);
+insert into review (id, feedback, stars, user_id) VALUES (6002, 'dobry pracant', 2, 1003);
 insert into review (id, feedback, stars, user_id) VALUES (6003, 'fajn firma', 3, 1004);
 insert into review (id, feedback, stars, user_id) VALUES (6004, 'nikdy viac ku kokotom', 4, 1005);
 -- ==============================================================================================================================================

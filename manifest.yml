@@ -1,0 +1,6 @@
+name: jobseeker
+path: target/jobseeker-0.0.1-SNAPSHOT.jar
+buildpack: https://github.com/cloudfoundry/java-buildpack.git
+memory: 1GB
+services:
+  - mypostgresql
