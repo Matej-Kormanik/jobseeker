@@ -23,16 +23,16 @@ public class UserParentEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_PARENT_ID_GENERATOR")
     private long id;
 
-    @Column(name = "USERNAME", nullable = false, unique = true)
+    @Column(name = "USERNAME", unique = true)
     private String username;
 
-    @Column(name = "PASSWORD", nullable = false)
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "ENABLED", nullable = false)
+    @Column(name = "ENABLED")
     private boolean enabled;
 
-    @Column(name = "EMAIL", nullable = false)
+    @Column(name = "EMAIL")
     private String email;
 
 }
