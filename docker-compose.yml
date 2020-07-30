@@ -1,11 +1,11 @@
 version: "3"
-services:
 
+services:
   jobseeker-app:
     build: .
     container_name: jobseeker-app
     networks:
-      - jobseeker-db-network 
+      - jobseeker-db-network
     ports:
       - 8080:8080
 
@@ -22,9 +22,11 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
-      
+
+
 networks:
   jobseeker-db-network:
-  
+
+
 volumes:
-    pgdata:
+  pgdata:
