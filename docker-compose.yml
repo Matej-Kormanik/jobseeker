@@ -2,7 +2,8 @@ version: "3"
 services:
 
   jobseeker-app:
-    image: jobseeker
+    build: .
+    container_name: jobseeker-app
     networks:
       - jobseeker-db-network 
     ports:
@@ -10,6 +11,7 @@ services:
 
   postgresql-db:
     image: postgres:9.6
+    container_name: postgresql-db
     networks:
       - jobseeker-db-network
     environment:
