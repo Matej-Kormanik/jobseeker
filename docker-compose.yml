@@ -8,6 +8,8 @@ services:
       - jobseeker-db-network
     ports:
       - 8080:8080
+    depends_on:
+      - postgresql-db
 
   postgresql-db:
     image: postgres:9.6
@@ -26,7 +28,6 @@ services:
 
 networks:
   jobseeker-db-network:
-
 
 volumes:
   pgdata:
