@@ -1,6 +1,6 @@
 spring.jpa:
   database: POSTGRESQL
-  hibernate.ddl-auto: update
+  hibernate.ddl-auto: create
   show-sql: true
 
 spring:
@@ -9,8 +9,3 @@ spring:
     username: postgres
     password: postgres
     driver-class-name: org.postgresql.Driver
-
-#  security:
-#    user:
-#      name: user
-#      password: user
